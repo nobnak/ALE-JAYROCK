@@ -17,3 +17,13 @@ ALE.Tcp.Net.CreateTcpSocketServer((e, client) => {
 	}
 }).Listen(hostname, listenPort, "http://localhost");
 ```
+
+## Tips
+ - 以下のDLLをUnityからPluginsフォルダ等にコピーしておく
+   - Mono.Web
+   - System.Configuration
+   - System.Drawing
+   - System.EnterpriseService
+   - System.Security
+   - System.Web
+ - API Compatibility Level を ".NET 2.0" にする
