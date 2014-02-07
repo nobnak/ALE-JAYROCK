@@ -21,15 +21,23 @@ public class Server : MonoBehaviour {
 
 	void Start() {
 		ALE.Tcp.Net.CreateTcpSocketServer((e, client) => {
-			using (var stream = client.GetStream())
-			using (var reader = new StreamReader(stream, Encoding.UTF8))
-			using (var writer = new StreamWriter(stream, new UTF8Encoding(false))) {
-				Service service = new Service();
-				JsonRpcDispatcher dispatcher = new JsonRpcDispatcher(service);
-				dispatcher.Process(reader, writer);
-				writer.Flush();
+			try {
+				Debug.Log("Connected");
+				using (var stream = client.GetStream())
+				using (var reader = new StreamReader(stream, Encoding.UTF8))
+				using (var writer = new StreamWriter(stream, new UTF8Encoding(false))) {
+					Service service = new Service();
+					JsonRpcDispatcher dispatcher = new JsonRpcDispatcher(service);
+					dispatcher.Process(reader, writer);
+					writer.Flush();
+					stream.Flush();
+				}
+			} catch (System.Exception ex) {
+				Debug.Log(ex);
+			} finally {
+				Debug.Log("Disconnected");
 			}
-		}).Listen(hostname, listenPort, "http://localhost");
+        }).Listen(hostname, listenPort, "http://localhost");
 	}
 	
 	class Service : JsonRpcService {
