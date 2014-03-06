@@ -27,3 +27,4 @@ ALE.Tcp.Net.CreateTcpSocketServer((e, client) => {
    - System.Security
    - System.Web
  - API Compatibility Level を ".NET 2.0" にする
+ - IP address を 0.0.0.0 (Any) にする(どのアドレスでの接続も許可)
