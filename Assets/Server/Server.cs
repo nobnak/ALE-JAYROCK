@@ -8,7 +8,7 @@ using System.IO;
 using System.Text;
 
 public class Server : MonoBehaviour {
-	public string hostname = "127.0.0.1";
+	public string hostname = "0.0.0.0";
 	public int listenPort = 3333;
 
 	void OnEnable() {
